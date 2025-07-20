@@ -1,6 +1,6 @@
 const db = new Dexie("WarehouseDB");
 db.version(1).stores({
-  items: "++id, name, seller, price"
+  items: "id, name, seller, price"  
 });
 
 const idInput = document.getElementById("productId");
@@ -18,8 +18,13 @@ function resetForm() {
 }
 
 async function getNextId() {
-  const items = await db.items.toArray();
-  return items.length > 0 ? Math.max(...items.map(i => i.id)) + 1 : 1;
+  const items = await db.items.orderBy("id").toArray();
+  let id = 1;
+  for (const item of items) {
+    if (item.id !== id) break;
+    id++;
+  }
+  return id;
 }
 
 async function createItem() {
@@ -27,12 +32,16 @@ async function createItem() {
   let seller = sellerInput.value.trim();
   let price = parseFloat(priceInput.value);
 
-  if (name && seller && !isNaN(price)) {
-    await db.items.add({ name, seller, price });
+  
+  if (name && seller && !isNaN(price) && price > 0) {
+    const id = await getNextId();
+    await db.items.add({ id, name, seller, price });
     resetForm();
     showStatus();
     updateNextId();
     readItems();
+  } else {
+    alert("Please enter valid inputs. Price must be a positive number.");
   }
 }
 
@@ -85,12 +94,15 @@ async function updateItem() {
   let seller = sellerInput.value.trim();
   let price = parseFloat(priceInput.value);
 
-  if (!isNaN(id) && name && seller && !isNaN(price)) {
+  
+  if (!isNaN(id) && name && seller && !isNaN(price) && price > 0) {
     await db.items.put({ id, name, seller, price });
     resetForm();
     showStatus();
     updateNextId();
     readItems();
+  } else {
+    alert("Please enter valid inputs. Price must be a positive number.");
   }
 }
 
@@ -106,6 +118,6 @@ async function deleteAll() {
   updateNextId();
 }
 
-// Initialize
+
 readItems();
 updateNextId();
