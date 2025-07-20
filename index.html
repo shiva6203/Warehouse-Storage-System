@@ -10,15 +10,15 @@
 <body>
   <div class="container mt-5">
 
-    <!-- Box for image + heading -->
+    
     <div class="card mb-4 shadow-sm">
       <div class="card-body text-center">
-        <img src="image.png" class="mb-2" alt="Warehouse Image" style="max-width: 80px;">
+        <img src="photos/image.png" class="mb-2" alt="Warehouse Image" style="max-width: 80px;">
         <h2 class="mb-0">Warehouse Storage System</h2>
       </div>
     </div>
 
-    <!-- Input Form -->
+    
     <div class="input-box p-4 mb-4 border rounded shadow-sm">
       <div class="mb-3">
         <input type="text" id="productId" class="form-control" placeholder="ID (Auto)" readonly />
@@ -30,7 +30,7 @@
         <input type="text" id="seller" class="form-control" placeholder="Seller" />
       </div>
       <div class="mb-3">
-        <input type="number" id="price" class="form-control" placeholder="Price" />
+        <input type="number" id="price" class="form-control" placeholder="Price" min="1" />
       </div>
       <div class="d-flex flex-wrap gap-2">
         <button class="btn btn-success" onclick="createItem()">Create</button>
@@ -41,7 +41,7 @@
       <p id="statusMsg" class="mt-3 text-success fw-bold" style="display:none;">Data Inserted!</p>
     </div>
 
-    <!-- Table -->
+    
     <table class="table table-bordered text-center">
       <thead class="table-light">
         <tr>
