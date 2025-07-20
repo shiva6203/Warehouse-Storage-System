@@ -24,18 +24,6 @@ A simple, responsive web-based application to manage warehouse inventory using *
 - [Dexie.js](https://dexie.org/) (IndexedDB wrapper)
 - [Bootstrap 5](https://getbootstrap.com/)
 
----
-
-## 📷 Screenshot
-
-![Warehouse Storage System UI](https://raw.githubusercontent.com/your-username/your-repo-name/main/images/image.png)
-
-> Replace the image URL with your actual raw GitHub image link
-
----
-
-## 📂 Folder Structure
-
 
 2. Open `index.html` in any modern browser.
 
